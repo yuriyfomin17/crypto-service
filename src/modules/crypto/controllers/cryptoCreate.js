@@ -1,24 +1,33 @@
 import mongoose from 'mongoose';
 import cryptoMongoModel from '../cryptoMongoModel';
-
-
+// {
+//   _id: mongoose.Schema.Types.ObjectId,
+//     timestamps: { type: Date, required: true },
+//   arrayInfo: { type: Array, required: true, },
+// },
+// fsyms: { type: String, required: true },
+// tsyms: { type: String, required: true },
+// CHANGE24HOUR: { type: String, required: true },
+// OPEN24HOUR: { type: String, required: true },
+// VOLUME24HOUR: { type: String, required: true },
+// VOLUME24HOURTO: { type: String, required: true },
+// LOW24HOUR: { type: String, required: true },
+// HIGH24HOUR: { type: String, required: true },
+// PRICE: { type: String, required: true },
+// SUPPLY: { type: String, required: true },
+// MKTCAP: { type: String, required: true },
 export default async function cryptoCreate(req, res) {
   const _id = new mongoose.Types.ObjectId();
-  const name = req.body.name;
-  const CHANGE24HOUR = req.body.CHANGE24HOUR;
-  const OPEN24HOUR = req.body.OPEN24HOUR;
-  const VOLUME24HOUR = req.body.VOLUME24HOUR;
-  const VOLUME24HOURTO = req.body.VOLUME24HOURTO;
-  const LOW24HOUR = req.body.LOW24HOUR;
-  const HIGH24HOUR = req.body.HIGH24HOUR;
-  const PRICE = req.body.PRICE;
-  const SUPPLY = req.body.SUPPLY;
-  const MKTCAP = req.body.MKTCAP;
+  const timestamps = new mongoose.Date()
+  const fsyms = req.body.fsyms;
+  const tsyms = req.body.tsyms;
+  const arrayInfo = req.body.arrayInfo
 
 
   const crypto = new cryptoMongoModel({
     _id,
-    name,
+    fsyms,
+    tsyms,
     CHANGE24HOUR,
     OPEN24HOUR,
     VOLUME24HOUR,
