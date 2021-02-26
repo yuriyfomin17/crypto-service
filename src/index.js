@@ -7,23 +7,19 @@ import routes from './modules/core/routes';
 import cors from './modules/core/cors';
 import errorHandling from './modules/core/errorHandling';
 import { getAPIInfo } from './modules/crypto/controllers/cryptoGetAPI';
+import cryptoModel from './modules/crypto/cryptoMongoModel';
+import { socket } from './modules/socket/socketController';
 
 
-const PORT = +process.env.PORT || 5000;
+const useSocket = require('socket.io');
+
+// const Websocket = require('ws');
+
+
+const PORT = process.env.PORT || 5000;
+
 const app = express();
 
-// const server = http.createServer(app);
-//
-// const wss = new Websocket.Server({ server: server });
-// wss.on('connection', function connection(ws) {
-//   ws.send('Hello new Client!')
-//   console.log("A new client connect");
-//   ws.on('message', function incoming(message) {
-//     console.log('received: %s', message);
-//   });
-//
-//   ws.send('something');
-// });
 
 app.disable('x-powered-by'); // DISABLE EXPRESS SIGNATURE
 mongoConnection();
@@ -35,7 +31,33 @@ routes(app);
 errorHandling(app);
 getAPIInfo();
 
-app.listen(PORT, () => {
-  console.log(`Node cluster worker ${process.pid}: listening on http://localhost:${PORT}/info`);
+
+//<-------------------------------WebSocket------------------------------------------------------>
+
+const server = require('http').Server(app);
+//server can now use socket
+const io = useSocket(server);
+io.on('connection', socket => {
+  console.log('socket ID', socket.id);
+  socket.on('CRYPTO_GET_DATABSE', (data) => {
+    console.log(data);
+    socket.emit('CRYPTO_GOT_FROM_DATABSE', 'HELLO');
+  });
+  cryptoModel.watch().on('change', (change) => {
+    const result = change.fullDocument.arrayInfo
+    socket.emit('change', result);
+
+  });
 
 });
+
+//<-------------------------------WebSocket------------------------------------------------------>
+
+
+server.listen(PORT, () => {
+  console.log(`Node cluster worker ${process.pid}: listening on http://localhost:${PORT}/info`);
+});
+
+export default io;
+
+

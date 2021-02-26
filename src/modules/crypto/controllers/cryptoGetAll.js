@@ -1,16 +1,17 @@
-import cryptoMongoModelModel from '../cryptoMongoModel';
+import cryptoModel from '../cryptoMongoModel';
 
-const cryptoGetAll = (req, res) => {
-  cryptoMongoModelModel.find()
-    .select('-__v').exec()
+export default function cryptoGetAll(req, res) {
+  cryptoModel.find().select("")
+    .exec()
     .then(docs => {
-      res.status(200).json(docs);
-    }).catch(err => {
-    res.status(500).json(err);
-  });
-
+      console.log( res.status(200).json(docs));
+      return res.status(200).json(docs);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 };
 
-export default cryptoGetAll;
+
 
 

@@ -3,7 +3,7 @@ import cryptoMongoModel from '../cryptoMongoModel';
 
 const cron = require('node-cron');
 const axios = require('axios');
-const cryptoAndCurrencyArray = ['BTC', 'XRP', 'USD', 'EUR', 'GBP'];
+const cryptoAndCurrencyArray = ["BTC","XRP", "ETH", "BCH", "EOS", "LTC", "XMR", "DASH","USD", "EUR", "GBP", "RUR", "CAD", "CHF", "NZD", "AUD", "JPY"];
 const urlRequest = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptoAndCurrencyArray.join(',')}&tsyms=${cryptoAndCurrencyArray.join(',')}`;
 
 export async function cryptoGetAPI() {
