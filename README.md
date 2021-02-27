@@ -31,11 +31,13 @@ All modules should be placed in `./src/modules`
 ##### Info
 Current common information like app name, version, current time, timezone.
 
-##### Todo
-CRUD operations for todo entity
 
 ### ESlint + Prettier
 It works together well.
 
 ### Babel
-We are using the Babel
+using the Babel
+
+### Folder Structure 
+
+
