@@ -46,9 +46,10 @@ using the Babel
 
 cryptoGetApi is directly called in index.js inside the socket. cryptoGetApi function receives paramters of cryptocurrencies and currency price required by user from the client via socket. Hence, user can control which data is saved to MongoDB and which data is retrieved later on from MongoDB.
 
-“info” module has a basic controller which allows to get the data of location and local time of the server. Postman get, post, delete requests can be found in “docs” folder.
+“info” module has a basic controller which allows to get the data of location and local time of the server. Postman get, post, delete requests can be found in “docs” folder. There is docker file as well with all key info used during build
 
 Server is deployed on Heroku https://crypto-service-yuriy-fomin.herokuapp.com/info
 
 Please note that server can be a bit slow since is deployed in USA
+
 
