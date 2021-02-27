@@ -40,4 +40,15 @@ using the Babel
 
 ### Folder Structure 
 
+“src” is a key folder.  Index.js is a key file which node.js executes. In this file cors policy, parsing of response, mongoDB connection, routes, errorHandling, sockets, are implemented. Module “core” has cors policy, parsing, logger, routes files.
+
+“crypto” module has controllers which are used for routes and mongoDB data schema under the name cryptoMongoModel.js. In “controllers” module basic routers are implemented. Main functionality of those routers is collecting, deleting and saving all the data in MongoDB. cryptoGetApi router is a bit more complex as it involves API call  (provided by test) and after successfully receiving  data, it is then saved in MongoDB.
+
+cryptoGetApi is directly called in index.js inside the socket. cryptoGetApi function receives paramters of cryptocurrencies and currency price required by user from the client via socket. Hence, user can control which data is saved to MongoDB and which data is retrieved later on from MongoDB.
+
+“info” module has a basic controller which allows to get the data of location and local time of the server. Postman get, post, delete requests can be found in “docs” folder.
+
+Server is deployed on Heroku https://crypto-service-yuriy-fomin.herokuapp.com/info
+
+Please note that server can be a bit slow since is deployed in USA
 
