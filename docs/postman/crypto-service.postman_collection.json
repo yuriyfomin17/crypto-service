@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "3c01c6ec-6904-4100-8219-2d7b47261aae",
+		"name": "crypto-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET currencies from API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD",
+					"protocol": "https",
+					"host": [
+						"min-api",
+						"cryptocompare",
+						"com"
+					],
+					"path": [
+						"data",
+						"pricemultifull"
+					],
+					"query": [
+						{
+							"key": "fsyms",
+							"value": "BTC"
+						},
+						{
+							"key": "tsyms",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL CRYPTOS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/crypto/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"crypto",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Collection",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/crypto/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"crypto",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
