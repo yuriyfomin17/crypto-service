@@ -4,7 +4,6 @@ export default function cryptoGetAll(req, res) {
   cryptoModel.find().select("")
     .exec()
     .then(docs => {
-      console.log( res.status(200).json(docs));
       return res.status(200).json(docs);
     })
     .catch(err => {

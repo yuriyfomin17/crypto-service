@@ -1,11 +1,10 @@
 import { Router } from 'express';
 
 import cryptoGetAll from'./controllers/cryptoGetAll'
-import cryptoCreate from './controllers/cryptoCreate';
-import infoRouter from '../info/infoRoutes';
+import dropCollection from './controllers/dropCollection';
 
 const cryptoRouter = Router();
-cryptoRouter.post('/create', cryptoCreate);
 cryptoRouter.get('/getAll', cryptoGetAll);
+cryptoRouter.delete('/delete', dropCollection);
 
 export default cryptoRouter;

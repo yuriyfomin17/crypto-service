@@ -7,8 +7,7 @@ import routes from './modules/core/routes';
 import cors from './modules/core/cors';
 import errorHandling from './modules/core/errorHandling';
 import { getAPIInfo } from './modules/crypto/controllers/cryptoGetAPI';
-import cryptoModel from './modules/crypto/cryptoMongoModel';
-import { socket } from './modules/socket/socketController';
+
 
 
 const useSocket = require('socket.io');
@@ -29,25 +28,22 @@ cors(app);
 ignoreFavicon(app);
 routes(app);
 errorHandling(app);
-getAPIInfo();
 
 
 //<-------------------------------WebSocket------------------------------------------------------>
 
 const server = require('http').Server(app);
 //server can now use socket
+
 const io = useSocket(server);
 io.on('connection', socket => {
   console.log('socket ID', socket.id);
   socket.on('CRYPTO_GET_DATABSE', (data) => {
-    console.log(data);
-    socket.emit('CRYPTO_GOT_FROM_DATABSE', 'HELLO');
+    const { urlRequest, cryptoAndCurrencyArray, requestPrice } = data;
+    console.log("-----------cryptoAndCurrencyArray-----------", cryptoAndCurrencyArray);
+    getAPIInfo(urlRequest, cryptoAndCurrencyArray, requestPrice)
   });
-  cryptoModel.watch().on('change', (change) => {
-    const result = change.fullDocument.arrayInfo
-    socket.emit('change', result);
 
-  });
 
 });
 
